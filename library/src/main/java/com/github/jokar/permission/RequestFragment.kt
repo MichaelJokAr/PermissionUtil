@@ -77,6 +77,10 @@ class RequestFragment : Fragment() {
                 permissions = it
             }
         }
+
+        if(permissions.isNullOrEmpty()){
+            return
+        }
         //判断权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!hasPermissions(permissions)) {

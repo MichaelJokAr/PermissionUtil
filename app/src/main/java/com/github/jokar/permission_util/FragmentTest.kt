@@ -1,7 +1,7 @@
 package com.github.jokar.permission_util
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.support.v4.app.Fragment
 
 /**
  * @Author: JokAr

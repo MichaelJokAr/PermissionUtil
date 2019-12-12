@@ -2,8 +2,9 @@ package com.github.jokar.permission_util
 
 import android.Manifest
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.github.jokar.permission.PermissionUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +37,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun request() {
-
+        PermissionUtil.Builder(this)
+            .setPermission(Manifest.permission.CAMERA)
+            .setDenied {
+                Toast.makeText(applicationContext, "Denied_CAMERA", Toast.LENGTH_SHORT).show()
+            }
+            .setGrant {
+                Toast.makeText(applicationContext, "grant_CAMERA", Toast.LENGTH_SHORT).show()
+            }
+            .setNeverAskAgain {
+                Toast.makeText(applicationContext, "NeverAskAgain_CAMERA", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            .request()
     }
 }
