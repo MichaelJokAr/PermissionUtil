@@ -40,4 +40,4 @@ new PermissionUtil.Builder(this)
 可以看到使用Builder设计模式来构建使用方法,上手不需要1min.特别方便
 
 ### 为什么实现最简单？
-使用fragment来实现的权限请求，非常简单明了
+使用fragment来实现的权限请求，总共不超过150行代码非常简单明了
