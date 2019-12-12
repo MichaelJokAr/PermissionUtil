@@ -31,8 +31,8 @@ class PermissionUtil(
         private var a: FragmentActivity?,
         private val f: Fragment?
     ) {
-        constructor(a: FragmentActivity) : this(a, null)
-        constructor(f: Fragment) : this(null, f)
+        constructor(activity: FragmentActivity) : this(activity, null)
+        constructor(fragment: Fragment) : this(null, fragment)
 
         private var p: String? = null
         private var ps: Array<String>? = null

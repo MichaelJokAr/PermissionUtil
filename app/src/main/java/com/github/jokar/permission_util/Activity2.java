@@ -4,6 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 
 import com.github.jokar.permission.PermissionUtil;
@@ -18,11 +19,16 @@ public class Activity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         new PermissionUtil.Builder(this)
                 .setPermission(Manifest.permission.CAMERA)
-                .setGrant(new Function0<Unit>() {
-                    @Override
-                    public Unit invoke() {
-                        return null;
-                    }
+                .setGrant(() -> {
+                    Toast.makeText(getApplicationContext(), "Grant_Camera",
+                            Toast.LENGTH_SHORT).show();
+                    return null;
+                })
+                .setDenied(() -> {
+                    Toast.makeText(getApplicationContext(), "Denied_Camera",
+                            Toast.LENGTH_SHORT).show();
+
+                    return null;
                 })
                 .request();
 
