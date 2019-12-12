@@ -13,15 +13,19 @@ import android.os.Build
 
 class PermissionUtil(
     var activity: Activity? = null,
-    var fragment: Fragment? = null,
-    var permission: String? = null,
-    var permissions: Array<String>? = null,
-    var grant: (() -> Unit)? = null,
-    var denied: (() -> Unit)? = null,
-    var neverAskAgain: (() -> Unit)? = null
+    var fragment: Fragment? = null
 ) {
-    var requestFragment: Fragment? = null
-    var fragmentManager: FragmentManager? = null
+    constructor(a: Activity) : this(a, null)
+    constructor(f: Fragment) : this(null, f)
+
+    private var permission: String? = null
+    private var permissions: Array<String>? = null
+    private var grant: (() -> Unit)? = null
+    private var denied: (() -> Unit)? = null
+    private var neverAskAgain: (() -> Unit)? = null
+
+    private var requestFragment: Fragment? = null
+    private var fragmentManager: FragmentManager? = null
 
     class Builder(
         private var a: Activity?,
@@ -61,18 +65,14 @@ class PermissionUtil(
             return this
         }
 
-        fun build() {
-            PermissionUtil().apply {
+        fun request() {
+            PermissionUtil(a, f).apply {
                 permission = p
                 permissions = ps
-                activity = a
-                fragment = f
                 grant = g
                 denied = d
                 neverAskAgain = n
-
-                build()
-            }
+            }.build()
         }
     }
 

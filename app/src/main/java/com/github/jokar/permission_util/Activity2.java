@@ -22,7 +22,7 @@ public class Activity2 extends AppCompatActivity {
                         return null;
                     }
                 })
-                .build();
+                .request();
 
     }
 }

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "NeverAskAgain_RECORD_AUDIO", Toast.LENGTH_SHORT)
                     .show()
             }
-            .build()
+            .request()
     }
 
     fun request() {
