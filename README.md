@@ -1,5 +1,10 @@
 # 这可能是最好用实现最简单的权限请求库了
 
+## 使用
+[ ![Download](https://api.bintray.com/packages/a10188755550/maven/permission/images/download.svg) ](https://bintray.com/a10188755550/maven/permission/_latestVersion)
+```gradle
+implementation 'com.github.jokar:permission:${latest-version}'
+```
 
 ## **为什么最好用？**
 该工具库使用```Builder```设计模式，可以说是非常简单上手的工具了，使用方法如下：
