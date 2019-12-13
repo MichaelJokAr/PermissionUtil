@@ -16,7 +16,7 @@ class FragmentTest : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         PermissionUtil.Builder(this)
-            .setPermission(Manifest.permission.CAMERA)
+            .setPermissions(Manifest.permission.CAMERA)
             .setDenied {
                 Toast.makeText(context, "Denied_RECORD_AUDIO", Toast.LENGTH_SHORT).show()
             }
@@ -29,4 +29,6 @@ class FragmentTest : Fragment() {
             }
             .request()
     }
+
+
 }

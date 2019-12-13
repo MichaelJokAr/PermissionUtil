@@ -18,7 +18,7 @@ public class Activity2 extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         new PermissionUtil.Builder(this)
-                .setPermission(Manifest.permission.CAMERA)
+                .setPermissions(Manifest.permission.CAMERA)
                 .setGrant(() -> {
                     Toast.makeText(getApplicationContext(), "Grant_Camera",
                             Toast.LENGTH_SHORT).show();

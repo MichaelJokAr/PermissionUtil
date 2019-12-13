@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.github.jokar.permission.PermissionUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     fun audioRequest() {
         PermissionUtil.Builder(this)
-            .setPermission(Manifest.permission.RECORD_AUDIO)
+            .setPermissions(Manifest.permission.RECORD_AUDIO)
             .setDenied {
                 Toast.makeText(applicationContext, "Denied_RECORD_AUDIO", Toast.LENGTH_SHORT).show()
             }
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     fun request() {
         PermissionUtil.Builder(this)
-            .setPermission(Manifest.permission.CAMERA)
+            .setPermissions(Manifest.permission.CAMERA)
             .setDenied {
                 Toast.makeText(applicationContext, "Denied_CAMERA", Toast.LENGTH_SHORT).show()
             }
@@ -51,4 +52,6 @@ class MainActivity : AppCompatActivity() {
             }
             .request()
     }
+
+
 }

@@ -18,8 +18,8 @@ class PermissionUtil(
     constructor(a: FragmentActivity) : this(a, null)
     constructor(f: Fragment) : this(null, f)
 
-    private var permission: String? = null
-    private var permissions: Array<String>? = null
+
+    private var permissions: Array<out String>? = null
     private var grant: (() -> Unit)? = null
     private var denied: (() -> Unit)? = null
     private var neverAskAgain: (() -> Unit)? = null
@@ -34,18 +34,12 @@ class PermissionUtil(
         constructor(activity: FragmentActivity) : this(activity, null)
         constructor(fragment: Fragment) : this(null, fragment)
 
-        private var p: String? = null
-        private var ps: Array<String>? = null
+        private var ps: Array<out String>? = null
         private var g: (() -> Unit)? = null
         private var d: (() -> Unit)? = null
         private var n: (() -> Unit)? = null
 
-        fun setPermission(permission: String): Builder {
-            this.p = permission
-            return this
-        }
-
-        fun setPermissions(permissions: Array<String>): Builder {
+        fun setPermissions(vararg permissions: String): Builder {
             this.ps = permissions
             return this
         }
@@ -65,9 +59,9 @@ class PermissionUtil(
             return this
         }
 
+
         fun request() {
             PermissionUtil(a, f).apply {
-                permission = p
                 permissions = ps
                 grant = g
                 denied = d
@@ -82,7 +76,7 @@ class PermissionUtil(
             return
         }
 
-        if (permission.isNullOrEmpty() && permissions.isNullOrEmpty()) {
+        if (permissions.isNullOrEmpty()) {
             throw RuntimeException("permission or permissions can't be null")
             return
         }
@@ -101,8 +95,7 @@ class PermissionUtil(
             }
         }
 
-        requestFragment = RequestFragment.instance(
-            permission,
+        requestFragment = PermissionFragment.instance(
             permissions,
             {
                 removeFragment(fragmentManager)
@@ -126,6 +119,9 @@ class PermissionUtil(
 
     }
 
+    /**
+     * 移除fragment
+     */
     private fun removeFragment(fragmentManager: FragmentManager?) {
         requestFragment?.let {
             fragmentManager
