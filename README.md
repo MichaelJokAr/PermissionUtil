@@ -6,7 +6,7 @@
 - kotlin用法
 ```
 PermissionUtil.Builder(this)
-            .setPermission(Manifest.permission.CAMERA)
+            .setPermissions(Manifest.permission.CAMERA)
             .setDenied {
                 Toast.makeText(applicationContext, "Denied_CAMERA", Toast.LENGTH_SHORT).show()
             }
@@ -22,7 +22,7 @@ PermissionUtil.Builder(this)
 - java用法
 ```
 new PermissionUtil.Builder(this)
-                .setPermission(Manifest.permission.CAMERA)
+                .setPermissions(Manifest.permission.CAMERA)
                 .setGrant(() -> {
                     Toast.makeText(getApplicationContext(), "Grant_Camera", 
                             Toast.LENGTH_SHORT).show();
