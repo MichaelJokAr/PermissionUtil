@@ -87,47 +87,46 @@ class PermissionUtil(
         }
         //
         activity?.let {
-            fragmentManager = activity!!.supportFragmentManager
+            fragmentManager = it.supportFragmentManager
         }
         fragment?.let {
-            fragment!!.activity?.let {
-                fragmentManager = fragment!!.childFragmentManager
-            }
+            fragmentManager = it.childFragmentManager
         }
 
         requestFragment = PermissionFragment.instance(
             permissions,
             {
-                removeFragment(fragmentManager)
+                removeFragment()
                 grant?.invoke()
             },
             {
-                removeFragment(fragmentManager)
+                removeFragment()
                 denied?.invoke()
             },
             {
-                removeFragment(fragmentManager)
+                removeFragment()
                 neverAskAgain?.invoke()
             }
         )
-        requestFragment?.let {
-            fragmentManager
-                ?.beginTransaction()
-                ?.add(requestFragment!!, "requestPermission")
-                ?.commitAllowingStateLoss()
+        requestFragment?.let { fragment ->
+            fragmentManager?.run {
+                beginTransaction()
+                    .add(fragment, "requestPermission")
+                    .commitAllowingStateLoss()
+            }
         }
-
     }
 
     /**
      * 移除fragment
      */
-    private fun removeFragment(fragmentManager: FragmentManager?) {
-        requestFragment?.let {
-            fragmentManager
-                ?.beginTransaction()
-                ?.remove(requestFragment!!)
-                ?.commitAllowingStateLoss()
+    private fun removeFragment() {
+        requestFragment?.let { it ->
+            fragmentManager?.run {
+                beginTransaction()
+                    .remove(it)
+                    .commitAllowingStateLoss()
+            }
         }
     }
 
