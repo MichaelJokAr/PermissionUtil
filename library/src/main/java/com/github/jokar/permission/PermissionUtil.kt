@@ -77,7 +77,7 @@ class PermissionUtil(
         }
 
         if (permissions.isNullOrEmpty()) {
-            throw RuntimeException("permission or permissions can't be null")
+            throw RuntimeException("permissions can't be null")
             return
         }
         //6.0以下直接返回允许
