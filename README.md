@@ -3,7 +3,7 @@
 ## 使用
 [ ![Download](https://api.bintray.com/packages/a10188755550/maven/permission/images/download.svg) ](https://bintray.com/a10188755550/maven/permission/_latestVersion)
 ```gradle
-implementation 'com.github.jokar:permission:${latest-version}'
+implementation 'com.github.jokar:permission:latest.release'
 ```
 
 ## **为什么最好用？**
