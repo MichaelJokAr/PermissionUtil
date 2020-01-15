@@ -4,11 +4,12 @@ import android.annotation.TargetApi
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.github.jokar.permission.Utils.Companion.hasPermissions
-import com.github.jokar.permission.Utils.Companion.verifyPermissions
+import com.github.jokar.permission.PermissionHelper.Companion.hasPermissions
+import com.github.jokar.permission.PermissionHelper.Companion.verifyPermissions
 
 
 /**
+ * 请求权限Fragment
  * @Author: JokAr
  * @Date: 2019-12-11 16:31
  */
@@ -55,7 +56,7 @@ class PermissionFragment : Fragment() {
                     //同意了权限
                     grant?.invoke()
                 } else {
-                    if (!Utils.shouldShowRequestPermissionRationale(activity!!, *permissions)) {
+                    if (!PermissionHelper.shouldShowRequestPermissionRationale(activity!!, *permissions)) {
                         //不在提示
                         neverAskAgain?.invoke()
                     } else {
@@ -85,7 +86,7 @@ class PermissionFragment : Fragment() {
         //判断权限
         if (!hasPermissions(context!!, *permissions)) {
             //没有权限-请求权限
-            if (Utils.shouldShowRequestPermissionRationale(activity!!, *permissions)) {
+            if (PermissionHelper.shouldShowRequestPermissionRationale(activity!!, *permissions)) {
                 denied?.invoke()
             } else {
                 //请求权限

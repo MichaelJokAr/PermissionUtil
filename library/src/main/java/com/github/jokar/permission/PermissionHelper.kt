@@ -7,8 +7,14 @@ import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.PermissionChecker
 import android.support.v4.util.SimpleArrayMap
+import android.text.TextUtils
 
-class Utils {
+/**
+ * 权限辅助类
+ * @Author: JokAr
+ * @Date: 2019-12-11 16:31
+ */
+class PermissionHelper {
     companion object {
         private var MIN_SDK_PERMISSIONS: SimpleArrayMap<String, Int> = SimpleArrayMap(8)
 
@@ -24,6 +30,9 @@ class Utils {
         }
 
         private fun permissionExists(permission: String): Boolean {
+            if (TextUtils.isEmpty(permission)) {
+                return false
+            }
             val minVersion = MIN_SDK_PERMISSIONS.get(permission)
             return minVersion == null || Build.VERSION.SDK_INT >= minVersion
         }
@@ -54,6 +63,10 @@ class Utils {
             context: Context,
             vararg permissions: String
         ): Boolean {
+            if (context == null || permissions.isNullOrEmpty()) {
+                return false
+            }
+
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                 return true
             }
@@ -74,10 +87,14 @@ class Utils {
         fun shouldShowRequestPermissionRationale(
             activity: Activity,
             vararg permissions: String
-        ): Boolean =
-            permissions.all {
+        ): Boolean {
+            if (activity == null || permissions.isNullOrEmpty()) {
+                return false
+            }
+            return permissions.all {
                 ActivityCompat.shouldShowRequestPermissionRationale(activity, it)
             }
+        }
 
         /**
          * 验证权限
